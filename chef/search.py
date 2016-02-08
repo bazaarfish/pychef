@@ -32,23 +32,23 @@ class SearchRow(dict):
 
 class Search(collections.Sequence):
     """A search of the Chef index.
-    
+
     The only required argument is the index name to search (eg. node, role, etc).
     The second, optional argument can be any Solr search query, with the same semantics
     as Chef.
-    
+
     Example::
-    
+
         for row in Search('node', 'roles:app'):
             print row['roles']
             print row.object.name
-    
+
     .. versionadded:: 0.1
     """
 
     url = '/search'
 
-    def __init__(self, index, q='*:*', rows=1000, start=0, api=None):
+    def __init__(self, index, q='*:*', rows=1500, start=0, api=None):
         self.name = index
         self.api = api or ChefAPI.get_global()
         self._args = dict(q=q, rows=rows, start=start)
